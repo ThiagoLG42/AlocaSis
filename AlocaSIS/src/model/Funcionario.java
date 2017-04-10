@@ -10,7 +10,15 @@ package model;
  *
  * @author Sigma development
  */
-public class Funcionario {
-    
+public class Funcionario extends Usuario {
+    private int numeroPIS;
+
+    public int getNumeroPIS() {
+        return numeroPIS;
+    }
+
+    public void setNumeroPIS(int numeroPIS) {
+        this.numeroPIS = numeroPIS;
+    }
     
 }

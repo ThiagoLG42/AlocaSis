@@ -41,7 +41,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         txtCidade = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtEstado = new javax.swing.JComboBox();
+        comboEstado = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         txtCNH = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
@@ -84,7 +84,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Estado");
 
-        txtEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("CNH");
@@ -134,7 +134,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6)
                             .addGap(34, 34, 34)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addGap(53, 53, 53)))
@@ -182,7 +182,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                         .addComponent(txtCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
-                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,6 +215,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox comboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -227,7 +228,6 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JComboBox txtEstado;
     private javax.swing.JTextField txtNomecompleto;
     private javax.swing.JTextField txtRG;
     private javax.swing.JTextField txtTelefone;
