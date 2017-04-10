@@ -42,7 +42,8 @@ public class CadastrarVeiculos extends javax.swing.JInternalFrame {
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
 
-        setTitle("Cadastrar veículo");
+        setClosable(true);
+        setTitle("Cadastrar Veículo");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Modelo");
