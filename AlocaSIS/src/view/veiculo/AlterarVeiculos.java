@@ -45,6 +45,8 @@ public class AlterarVeiculos extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
 
+        setTitle("Alterar veículo");
+
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Chassi");
 
