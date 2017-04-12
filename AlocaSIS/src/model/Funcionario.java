@@ -11,13 +11,20 @@ package model;
  * @author Sigma development
  */
 public class Funcionario extends Usuario {
-    private int numeroPIS;
+    private String numeroPIS;
 
-    public int getNumeroPIS() {
+    public Funcionario() {
+    }
+
+    public Funcionario(String numeroPIS) {
+        this.numeroPIS = numeroPIS;
+    }
+
+    public String getNumeroPIS() {
         return numeroPIS;
     }
 
-    public void setNumeroPIS(int numeroPIS) {
+    public void setNumeroPIS(String numeroPIS) {
         this.numeroPIS = numeroPIS;
     }
     

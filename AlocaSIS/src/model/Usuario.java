@@ -12,13 +12,27 @@ package model;
 public class Usuario {
     private String nome;
     private String email;
-    private int cpf;
+    private String cpf;
     private String telefone;
-    private int rg;
+    private String rg;
     private String endereco;
     private String login;
     private String senha;
 
+    public Usuario() {
+    }
+
+    public Usuario(String nome, String email, String cpf, String telefone, String rg, String endereco, String login, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.rg = rg;
+        this.endereco = endereco;
+        this.login = login;
+        this.senha = senha;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -35,11 +49,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -51,11 +65,11 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public int getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
