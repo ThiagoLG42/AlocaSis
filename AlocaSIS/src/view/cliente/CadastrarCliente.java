@@ -1,5 +1,6 @@
 package view.cliente;
 
+import DAO.ClienteDAO;
 import javax.swing.JOptionPane;
 import model.Cliente;
 
@@ -230,7 +231,12 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Cliente c = new Cliente(txtNomecompleto.getText(), txtEmail.getText(),txtCPF.getText(),
                 txtTelefone.getText(), txtRG.getText(), txtCidade.getText(), "Ceará", txtCNH.getText());
-        JOptionPane.showMessageDialog(null, "Nome: "+c.getNome());
+        ClienteDAO dao = new ClienteDAO();
+        if(dao.cadastrarCliente(c)){
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar");
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

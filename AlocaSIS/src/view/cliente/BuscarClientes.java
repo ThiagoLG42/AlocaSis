@@ -1,5 +1,10 @@
 package view.cliente;
 
+import DAO.ClienteDAO;
+import java.util.List;
+import javax.swing.JOptionPane;
+import model.Cliente;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +22,19 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
      */
     public BuscarClientes() {
         initComponents();
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> lista = dao.BuscarCliente();
+        for(int i = 0; i < lista.size(); i++){
+            Cliente c = new Cliente();
+            tabela.setValueAt(c.getNome(), i, 0);
+            tabela.setValueAt(c.getEmail(), i, 1);
+            tabela.setValueAt(c.getCpf(), i, 2);
+            tabela.setValueAt(c.getTelefone, i, 3);
+            tabela.setValueAt(c.get, i, 4);
+            tabela.setValueAt(c.get, i, 5);
+            tabela.setValueAt(c.get, i, 6);
+            tabela.setValueAt(c.get, i, 7);
+        }
     }
 
     /**
@@ -32,7 +50,7 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         btnAlterar = new javax.swing.JButton();
 
         setClosable(true);
@@ -47,7 +65,7 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -66,7 +84,7 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabela);
 
         btnAlterar.setText("Alterar cliente");
 
@@ -104,6 +122,9 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        int linha = tabela.getSelectedRow();
+        int id = (int) tabela.getValueAt(linha, 0);
+        JOptionPane.showMessageDialog(null, "Id selecionado: "+id);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
 
@@ -112,7 +133,7 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela;
     private javax.swing.JTextField txtBuscarClientes;
     // End of variables declaration//GEN-END:variables
 }
