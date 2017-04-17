@@ -44,7 +44,7 @@ public class ClienteDAO {
 
     public boolean alterarCliente(Cliente c) {
         Connection con = ConnectionFactory.getConnection();
-        String sql = "UPDATE funcionario SET cpf = ?, numeroPIS = ?, nome = ?, email = ?, telefone = ?,"
+        String sql = "UPDATE cliente SET cpf = ?, numeroPIS = ?, nome = ?, email = ?, telefone = ?,"
                 + "rg = ?, endereco = ?, login = ?, senha = ? WHERE cpf = ?";
         PreparedStatement stmt = null;
         try {
@@ -71,7 +71,7 @@ public class ClienteDAO {
 
     public boolean excluirCliente(Cliente c) {
         Connection con = ConnectionFactory.getConnection();
-        String sql = "DELETE FROM funcionario WHERE cpf = ?";
+        String sql = "DELETE FROM cliente WHERE cpf = ?";
         PreparedStatement stmt = null;
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
@@ -87,9 +87,9 @@ public class ClienteDAO {
 
     }
 
-    public List BuscarCliente() {
+    public List buscarCliente() {
         Connection con = ConnectionFactory.getConnection();
-        String sql = "SELECT * FROM funcionario";
+        String sql = "SELECT * FROM cliente";
         List<Cliente> list = new ArrayList<>();
         PreparedStatement stmt = null;
         try {

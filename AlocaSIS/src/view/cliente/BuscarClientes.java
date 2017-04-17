@@ -3,6 +3,7 @@ package view.cliente;
 import DAO.ClienteDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 
 /*
@@ -22,19 +23,8 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
      */
     public BuscarClientes() {
         initComponents();
-        ClienteDAO dao = new ClienteDAO();
-        List<Cliente> lista = dao.BuscarCliente();
-        for(int i = 0; i < lista.size(); i++){
-            Cliente c = new Cliente();
-            tabela.setValueAt(c.getNome(), i, 0);
-            tabela.setValueAt(c.getEmail(), i, 1);
-            tabela.setValueAt(c.getCpf(), i, 2);
-            tabela.setValueAt(c.getTelefone, i, 3);
-            tabela.setValueAt(c.get, i, 4);
-            tabela.setValueAt(c.get, i, 5);
-            tabela.setValueAt(c.get, i, 6);
-            tabela.setValueAt(c.get, i, 7);
-        }
+        
+
     }
 
     /**
