@@ -1,5 +1,8 @@
 package view.cliente;
 
+import javax.swing.JOptionPane;
+import model.Cliente;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -90,6 +93,11 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         jLabel8.setText("CNH");
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -204,11 +212,26 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
+        txtCNH.setText("");
+        txtCPF.setText("");
+        txtCidade.setText("");
+        txtEmail.setText("");
+        txtNomecompleto.setText("");
+        txtRG.setText("");
+        txtTelefone.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+        Cliente c = new Cliente(txtNomecompleto.getText(), txtEmail.getText(),txtCPF.getText(),
+                txtTelefone.getText(), txtRG.getText(), txtCidade.getText(), "Ceará", txtCNH.getText());
+        JOptionPane.showMessageDialog(null, "Nome: "+c.getNome());
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

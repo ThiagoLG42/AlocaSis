@@ -12,14 +12,27 @@ package model;
 public class Cliente {
     private String nome;
     private String email;
-    private int cpf;
+    private String cpf;
     private String telefone;
-    private int rg;
-    private String endereco;
+    private String rg;
     private String cidade;
     private String estado;
     private String cnh;
 
+    public Cliente() {
+    }
+
+    public Cliente(String nome, String email, String cpf, String telefone, String rg, String cidade, String estado, String cnh) {
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.rg = rg;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cnh = cnh;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -36,11 +49,11 @@ public class Cliente {
         this.email = email;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -52,22 +65,13 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public int getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public String getCidade() {
         return cidade;
     }

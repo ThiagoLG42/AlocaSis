@@ -9,6 +9,8 @@ import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.Funcionario;
 
 /**
@@ -16,11 +18,12 @@ import model.Funcionario;
  * @author Sigma development
  */
 public class FuncionarioDAO {
-    public boolean cadastrarFuncionario(Funcionario f){
+
+    public boolean cadastrarFuncionario(Funcionario f) {
         Connection con = ConnectionFactory.getConnection();
         String sql = "INSERT INTO funcionario VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement stmt = null;
-        try{
+        try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, f.getCpf());
             stmt.setString(2, f.getNumeroPIS());
@@ -33,20 +36,20 @@ public class FuncionarioDAO {
             stmt.setString(9, f.getSenha());
             stmt.executeUpdate();
             return true;
-        }catch(SQLException ex){
-            System.out.println("Exceção: "+ ex);
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
             return false;
-        }finally{
+        } finally {
             ConnectionFactory.closeConnetion(con, stmt);
         }
     }
-    
-    public boolean alterarFuncionario(Funcionario f){
+
+    public boolean alterarFuncionario(Funcionario f) {
         Connection con = ConnectionFactory.getConnection();
         String sql = "UPDATE funcionario SET cpf = ?, numeroPIS = ?, nome = ?, email = ?, telefone = ?,"
                 + "rg = ?, endereco = ?, login = ?, senha = ? WHERE cpf = ?";
         PreparedStatement stmt = null;
-        try{
+        try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, f.getCpf());
             stmt.setString(2, f.getNumeroPIS());
@@ -60,63 +63,62 @@ public class FuncionarioDAO {
             stmt.setString(10, f.getCpf());
             stmt.executeUpdate();
             return true;
-        }catch(SQLException ex){
-            System.out.println("Exceção: "+ ex);
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
             return false;
-        }finally{
+        } finally {
             ConnectionFactory.closeConnetion(con, stmt);
         }
-    
+
     }
-    
-    public boolean excluirFuncionario(Funcionario f){
+
+    public boolean excluirFuncionario(Funcionario f) {
         Connection con = ConnectionFactory.getConnection();
         String sql = "DELETE FROM funcionario WHERE cpf = ?";
         PreparedStatement stmt = null;
-        try{
+        try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, f.getCpf());
             stmt.executeUpdate();
             return true;
-        }catch(SQLException ex){
-            System.out.println("Exceção: "+ ex);
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
             return false;
-        }finally{
+        } finally {
             ConnectionFactory.closeConnetion(con, stmt);
         }
-    
+
     }
-    public boolean BuscarFuncionario(Funcionario f){
+
+    public List BuscarFuncionario() {
         Connection con = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM funcionario";
+        List<Funcionario> list = new ArrayList<>();
         PreparedStatement stmt = null;
-        try{
+        try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
-            ResultSet rs= stmt.executeQuery();
-            
-            
-            return true;
-        }catch(SQLException ex){
-            System.out.println("Exceção: "+ ex);
-            return false;
-        }finally{
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Funcionario f = new Funcionario();
+                f.setCpf(rs.getString(1));
+                f.setNumeroPIS(rs.getString(2));
+                f.setNome(rs.getString(3));
+                f.setEmail(rs.getString(4));
+                f.setTelefone(rs.getString(5));
+                f.setRg(rs.getString(6));
+                f.setEndereco(rs.getString(7));
+                f.setLogin(rs.getString(8));
+
+                list.add(f);
+            }
+            return list;
+
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
+            return null;
+        } finally {
             ConnectionFactory.closeConnetion(con, stmt);
         }
-    
-    }
-    public static void main(String[] args) {
-        Funcionario f = new Funcionario();
-        f.setCpf("10000000000");
-        f.setEmail("sldfhsdlkflskdfkls");
-        f.setEndereco("lksdhfkljsdhf");
-        f.setLogin("mara doida");
-        f.setNome("Mara safadona");
-        f.setNumeroPIS("1222");
-        f.setRg("234325");
-        f.setSenha("Eduardo gatao");
-        f.setTelefone("99999999");
-        
-        FuncionarioDAO dao = new FuncionarioDAO();
-        dao.excluirFuncionario(f);
+
     }
 }
