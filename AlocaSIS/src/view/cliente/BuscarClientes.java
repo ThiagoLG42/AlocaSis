@@ -11,7 +11,6 @@ import model.Cliente;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Sigma Development
@@ -23,8 +22,6 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
      */
     public BuscarClientes() {
         initComponents();
-        
-
     }
 
     /**
@@ -77,6 +74,11 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tabela);
 
         btnAlterar.setText("Alterar cliente");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,10 +114,33 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        String nome = txtBuscarClientes.getText();
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> lista = dao.buscarCliente(nome);
+        int i = 0;
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        for (Cliente c : lista) {
+            modelo.addRow(new Object[]{
+                c.getNome(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getRg(),
+                c.getCidade(),
+                c.getEstado(),
+                c.getCnh()
+
+            });
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
         int linha = tabela.getSelectedRow();
         int id = (int) tabela.getValueAt(linha, 0);
-        JOptionPane.showMessageDialog(null, "Id selecionado: "+id);
-    }//GEN-LAST:event_btnBuscarActionPerformed
+        Cliente c = new Cliente();
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -87,13 +87,14 @@ public class ClienteDAO {
 
     }
 
-    public List buscarCliente() {
+    public List buscarCliente(String nome) {
         Connection con = ConnectionFactory.getConnection();
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM cliente WHERE nome LIKE ?";
         List<Cliente> list = new ArrayList<>();
         PreparedStatement stmt = null;
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.setString(1, "%"+nome+"%");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Cliente c = new Cliente();
