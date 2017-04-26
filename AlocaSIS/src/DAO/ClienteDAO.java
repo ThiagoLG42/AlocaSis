@@ -44,14 +44,14 @@ public class ClienteDAO {
 
     public boolean alterarCliente(Cliente c) {
         Connection con = ConnectionFactory.getConnection();
-        String sql = "UPDATE cliente SET cpf = ?, numeroPIS = ?, nome = ?, email = ?, telefone = ?,"
-                + "rg = ?, endereco = ?, login = ?, senha = ? WHERE cpf = ?";
+        String sql = "UPDATE cliente SET cpf = ?, nome = ?, email = ?, telefone = ?,"
+                + "rg = ?, cidade = ?, estado = ?, cnh = ? WHERE cpf = ?";
         PreparedStatement stmt = null;
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
-            stmt.setString(1, c.getNome());
-            stmt.setString(2, c.getEmail());
-            stmt.setString(3, c.getCpf());
+            stmt.setString(1, c.getCpf());
+            stmt.setString(2, c.getNome());
+            stmt.setString(3, c.getEmail());
             stmt.setString(4, c.getTelefone());
             stmt.setString(5, c.getRg());
             stmt.setString(6, c.getCidade());

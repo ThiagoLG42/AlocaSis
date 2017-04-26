@@ -138,8 +138,10 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
         int linha = tabela.getSelectedRow();
-        int id = (int) tabela.getValueAt(linha, 0);
-        Cliente c = new Cliente();
+        String[] dados = new String[8];
+        String cpf = tabela.getValueAt(linha, 2).toString();
+        AlterarCliente tela = new AlterarCliente();
+        tela.setVisible(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
 
