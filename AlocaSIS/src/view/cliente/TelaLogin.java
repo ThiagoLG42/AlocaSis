@@ -5,6 +5,10 @@
  */
 package view.cliente;
 
+import DAO.FuncionarioDAO;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author Sigma development
@@ -46,6 +50,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setText("Senha");
 
         btnEntrar.setText("Entrar");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,6 +99,22 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLoginActionPerformed
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        // TODO add your handling code here:
+        FuncionarioDAO dao = new FuncionarioDAO();
+        boolean login = dao.logar(txtLogin.getText(), txtSenha.getText());
+        if(login){
+            JOptionPane.showMessageDialog(null, "Seja bem vindo");
+            TelaPrincipal principal = new TelaPrincipal();
+            principal.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Funcionário não cadastrado");
+            txtLogin.setText("");
+            txtSenha.setText("");
+        }
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments

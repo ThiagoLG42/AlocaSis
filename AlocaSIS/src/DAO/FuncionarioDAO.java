@@ -90,14 +90,15 @@ public class FuncionarioDAO {
 
     }
 
-    public List BuscarFuncionario() {
+    public List buscarFuncionario() {
         Connection con = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM funcionario";
         List<Funcionario> list = new ArrayList<>();
         PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 Funcionario f = new Funcionario();
                 f.setCpf(rs.getString(1));
@@ -117,8 +118,26 @@ public class FuncionarioDAO {
             System.out.println("Exceção: " + ex);
             return null;
         } finally {
-            ConnectionFactory.closeConnetion(con, stmt);
+            ConnectionFactory.closeConnetion(con, stmt, rs);
         }
 
+    }
+    public boolean logar(String login, String senha){
+        Connection con = ConnectionFactory.getConnection();
+        String sql = "SELECT * FROM funcionario WHERE login = ? AND senha = ?";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.setString(1, login);
+            stmt.setString(2, senha);
+            rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
+            return false;
+        } finally {
+            ConnectionFactory.closeConnetion(con, stmt, rs);
+        }
     }
 }

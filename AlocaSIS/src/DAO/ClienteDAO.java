@@ -22,7 +22,7 @@ public class ClienteDAO {
         Connection con = ConnectionFactory.getConnection();
         String sql = "INSERT INTO cliente VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement stmt = null;
-        try {
+        try{
             stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, c.getNome());
             stmt.setString(2, c.getEmail());
@@ -34,15 +34,15 @@ public class ClienteDAO {
             stmt.setString(8, c.getCnh());
             stmt.executeUpdate();
             return true;
-        } catch (SQLException ex) {
+        }catch(SQLException ex){
             System.out.println("Exceção: " + ex);
             return false;
-        } finally {
+        }finally{
             ConnectionFactory.closeConnetion(con, stmt);
         }
     }
 
-    public boolean alterarCliente(Cliente c) {
+    public boolean alterarCliente(Cliente c, String cpf) {
         Connection con = ConnectionFactory.getConnection();
         String sql = "UPDATE cliente SET cpf = ?, nome = ?, email = ?, telefone = ?,"
                 + "rg = ?, cidade = ?, estado = ?, cnh = ? WHERE cpf = ?";
@@ -57,7 +57,7 @@ public class ClienteDAO {
             stmt.setString(6, c.getCidade());
             stmt.setString(7, c.getEstado());
             stmt.setString(8, c.getCnh());
-            stmt.setString(9, c.getCpf());
+            stmt.setString(9, cpf);
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -92,10 +92,11 @@ public class ClienteDAO {
         String sql = "SELECT * FROM cliente WHERE nome LIKE ?";
         List<Cliente> list = new ArrayList<>();
         PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, "%"+nome+"%");
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 Cliente c = new Cliente();
                 c.setNome(rs.getString(1));
@@ -115,8 +116,37 @@ public class ClienteDAO {
             System.out.println("Exceção: " + ex);
             return null;
         } finally {
-            ConnectionFactory.closeConnetion(con, stmt);
+            ConnectionFactory.closeConnetion(con, stmt, rs);
         }
+    }
+    public Cliente buscarClientePorCpf(String cpf) {
+        Connection con = ConnectionFactory.getConnection();
+        String sql = "SELECT * FROM cliente WHERE cpf = ?";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.setString(1, cpf);
+            rs = stmt.executeQuery();
+            Cliente c = null;
+            while (rs.next()) {
+                c = new Cliente();
+                c.setNome(rs.getString(1));
+                c.setEmail(rs.getString(2));
+                c.setCpf(rs.getString(3));
+                c.setTelefone(rs.getString(4));
+                c.setRg(rs.getString(5));
+                c.setCidade(rs.getString(6));
+                c.setEstado(rs.getString(7));
+                c.setCnh(rs.getString(8));
+            }
+            return c;
 
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
+            return null;
+        } finally {
+            ConnectionFactory.closeConnetion(con, stmt, rs);
+        }
     }
 }
