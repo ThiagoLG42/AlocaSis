@@ -17,6 +17,18 @@ public class Veiculo {
     private double preco;
     private String chassi;
 
+    public Veiculo(String modelo, String fabricante, String cor, int ano, double preco, String chassi) {
+        this.modelo = modelo;
+        this.fabricante = fabricante;
+        this.cor = cor;
+        this.ano = ano;
+        this.preco = preco;
+        this.chassi = chassi;
+    }
+
+    public Veiculo() {
+    }
+    
     public String getModelo() {
         return modelo;
     }

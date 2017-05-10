@@ -149,4 +149,35 @@ public class ClienteDAO {
             ConnectionFactory.closeConnetion(con, stmt, rs);
         }
     }
+    public List buscarClienteTodo() {
+        Connection con = ConnectionFactory.getConnection();
+        String sql = "SELECT * FROM cliente";
+        List<Cliente> list = new ArrayList<>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Cliente c = new Cliente();
+                c.setNome(rs.getString(1));
+                c.setEmail(rs.getString(2));
+                c.setCpf(rs.getString(3));
+                c.setTelefone(rs.getString(4));
+                c.setRg(rs.getString(5));
+                c.setCidade(rs.getString(6));
+                c.setEstado(rs.getString(7));
+                c.setCnh(rs.getString(8));
+
+                list.add(c);
+            }
+            return list;
+
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
+            return null;
+        } finally {
+            ConnectionFactory.closeConnetion(con, stmt, rs);
+        }
+    }
 }
