@@ -18,7 +18,14 @@ import model.Cliente;
 public class EscolherCliente extends javax.swing.JFrame {
     /**
      * Creates new form EscolherCliente
+     * @param fecharVenda
      */
+    private FecharVenda fecharVenda;
+    
+    public EscolherCliente(FecharVenda fecharVenda) {
+        this.fecharVenda = fecharVenda;
+    }
+
     public EscolherCliente() {
         initComponents();
         ClienteDAO dao = new ClienteDAO();
@@ -55,7 +62,7 @@ public class EscolherCliente extends javax.swing.JFrame {
         tabela = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Buscar Clientes:");
 
@@ -85,6 +92,7 @@ public class EscolherCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabela.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(tabela);
 
         jButton1.setText("Escolher cliente");
@@ -155,6 +163,7 @@ public class EscolherCliente extends javax.swing.JFrame {
         String cpf = tabela.getValueAt(linha, 3).toString();
         Cliente c = new Cliente();
         c.setCpf(cpf);
+        
         JOptionPane.showMessageDialog(null, "Cliente cpf: "+c.getCpf());
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

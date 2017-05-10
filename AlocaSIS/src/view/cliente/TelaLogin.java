@@ -8,7 +8,6 @@ package view.cliente;
 import DAO.FuncionarioDAO;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Sigma development
@@ -104,12 +103,19 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         FuncionarioDAO dao = new FuncionarioDAO();
         boolean login = dao.logar(txtLogin.getText(), txtSenha.getText());
-        if(login){
-            JOptionPane.showMessageDialog(null, "Seja bem vindo");
-            TelaPrincipal principal = new TelaPrincipal();
-            principal.setVisible(true);
-            dispose();
-        }else{
+        if (login) {
+            if (txtLogin.getText().equals("admin") && txtSenha.getText().equals("admin")) {
+                JOptionPane.showMessageDialog(null, "Seja bem vindo");
+                TelaPrincipal principal = new TelaPrincipal();
+                principal.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Seja bem vindo");
+                TelaPrincipalFuncionario principal = new TelaPrincipalFuncionario();
+                principal.setVisible(true);
+                dispose();
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Funcionário não cadastrado");
             txtLogin.setText("");
             txtSenha.setText("");

@@ -118,7 +118,6 @@ public class BuscarVeiculos extends javax.swing.JInternalFrame {
         String chassi = txtChassi.getText();
         VeiculoDAO dao = new VeiculoDAO();
         List<Veiculo> lista = dao.buscarVeiculo(modelo, chassi);
-        int i = 0;
         DefaultTableModel modeloTabela = (DefaultTableModel) tabela.getModel();
         modeloTabela.setNumRows(0);
         for (Veiculo v : lista) {

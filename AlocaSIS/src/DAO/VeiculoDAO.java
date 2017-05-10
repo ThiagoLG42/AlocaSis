@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Cliente;
 import model.Veiculo;
 
 /**
@@ -46,11 +45,12 @@ public class VeiculoDAO {
         String sql = "SELECT * FROM veiculo WHERE modelo=? OR chassi=?";
         List<Veiculo> list = new ArrayList<>();
         PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
-            stmt.setString(1, "%"+modelo+"%");
-            stmt.setString(2, "%"+chassi+"%");
-            ResultSet rs = stmt.executeQuery();
+            stmt.setString(1, modelo);
+            stmt.setString(2, chassi);
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 Veiculo v = new Veiculo();
                 v.setModelo(rs.getString(1));
@@ -68,7 +68,7 @@ public class VeiculoDAO {
             System.out.println("Exceção: " + ex);
             return null;
         } finally {
-            ConnectionFactory.closeConnetion(con, stmt);
+            ConnectionFactory.closeConnetion(con, stmt, rs);
         }
 
     }
@@ -110,6 +110,97 @@ public class VeiculoDAO {
             return false;
         } finally {
             ConnectionFactory.closeConnetion(con, stmt);
+        }
+
+    }
+    public Veiculo buscarVeiculoPorChassi(String chassi) {
+        Connection con = ConnectionFactory.getConnection();
+        String sql = "SELECT * FROM veiculo WHERE chassi=?";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.setString(1, chassi);
+            rs = stmt.executeQuery();
+            Veiculo v = null;
+            if (rs.next()) {
+                v = new Veiculo();
+                v.setModelo(rs.getString(1));
+                v.setFabricante(rs.getString(2));
+                v.setCor(rs.getString(3));
+                v.setAno(rs.getInt(4));
+                v.setPreco(rs.getDouble(5));
+                v.setChassi(rs.getString(6));
+            }
+            return v;
+
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
+            return null;
+        } finally {
+            ConnectionFactory.closeConnetion(con, stmt, rs);
+        }
+
+    }
+    public List buscarVeiculoPorChassi2(String chassi) {
+        Connection con = ConnectionFactory.getConnection();
+        String sql = "SELECT * FROM veiculo WHERE chassi=?";
+        List<Veiculo> lista = new ArrayList<>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.setString(1, chassi);
+            rs = stmt.executeQuery();
+            Veiculo v = null;
+            if (rs.next()) {
+                v = new Veiculo();
+                v.setModelo(rs.getString(1));
+                v.setFabricante(rs.getString(2));
+                v.setCor(rs.getString(3));
+                v.setAno(rs.getInt(4));
+                v.setPreco(rs.getDouble(5));
+                v.setChassi(rs.getString(6));
+                
+                lista.add(v);
+            }
+            return lista;
+
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
+            return null;
+        } finally {
+            ConnectionFactory.closeConnetion(con, stmt, rs);
+        }
+
+    }
+    public List buscarVeiculoTodo() {
+        Connection con = ConnectionFactory.getConnection();
+        String sql = "SELECT * FROM veiculo";
+        List<Veiculo> list = new ArrayList<>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Veiculo v = new Veiculo();
+                v.setModelo(rs.getString(1));
+                v.setFabricante(rs.getString(2));
+                v.setCor(rs.getString(3));
+                v.setAno(rs.getInt(4));
+                v.setPreco(rs.getDouble(5));
+                v.setChassi(rs.getString(6));
+
+                list.add(v);
+            }
+            return list;
+
+        } catch (SQLException ex) {
+            System.out.println("Exceção: " + ex);
+            return null;
+        } finally {
+            ConnectionFactory.closeConnetion(con, stmt, rs);
         }
 
     }

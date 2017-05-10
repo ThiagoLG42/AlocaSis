@@ -5,17 +5,38 @@
  */
 package view.venda;
 
+import DAO.VeiculoDAO;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Veiculo;
+
 /**
  *
  * @author Sigma development
  */
 public class EscolherVeiculo extends javax.swing.JFrame {
+    private Object txtModelo;
 
     /**
      * Creates new form EscolherVeiculo
      */
     public EscolherVeiculo() {
         initComponents();
+        VeiculoDAO dao = new VeiculoDAO();
+        List<Veiculo> lista = dao.buscarVeiculoTodo();
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        for (Veiculo v : lista) {
+            modelo.addRow(new Object[]{
+                v.getModelo(),
+                v.getFabricante(),
+                v.getCor(),
+                v.getAno(),
+                v.getPreco(),
+                v.getChassi()
+            });
+        }
     }
 
     /**
@@ -27,21 +48,109 @@ public class EscolherVeiculo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        btnBuscar2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        txtChassi = new javax.swing.JTextField();
+        btnEscolherVeiculo = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        btnBuscar2.setText("Buscar");
+        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar2ActionPerformed(evt);
+            }
+        });
+
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Modelo", "Fabricante", "Cor", "Ano", "Preço", "Chassi"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabela);
+
+        jLabel2.setText("Chassi:");
+
+        btnEscolherVeiculo.setText("Escolher Veiculo");
+        btnEscolherVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscolherVeiculoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtChassi, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscar2)
+                .addGap(18, 18, 18)
+                .addComponent(btnEscolherVeiculo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtChassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar2)
+                    .addComponent(btnEscolherVeiculo))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
+        // TODO add your handling code here:
+        String chassi = txtChassi.getText();
+        VeiculoDAO dao = new VeiculoDAO();
+        List<Veiculo> lista = dao.buscarVeiculoPorChassi2(chassi);
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        for (Veiculo v : lista) {
+            modelo.addRow(new Object[]{
+                v.getModelo(),
+                v.getFabricante(),
+                v.getCor(),
+                v.getAno(),
+                v.getPreco(),
+                v.getChassi()
+            });
+        }
+    }//GEN-LAST:event_btnBuscar2ActionPerformed
+
+    private void btnEscolherVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscolherVeiculoActionPerformed
+        // TODO add your handling code here:
+        int linha = tabela.getSelectedRow();
+        String chassi = tabela.getValueAt(linha, 5).toString();
+        JOptionPane.showMessageDialog(null, "Chassi: "+chassi);
+    }//GEN-LAST:event_btnEscolherVeiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +188,11 @@ public class EscolherVeiculo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar2;
+    private javax.swing.JButton btnEscolherVeiculo;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabela;
+    private javax.swing.JTextField txtChassi;
     // End of variables declaration//GEN-END:variables
 }
