@@ -15,35 +15,13 @@ import model.Cliente;
  *
  * @author Sigma development
  */
-public class EscolherCliente extends javax.swing.JFrame {
-    /**
-     * Creates new form EscolherCliente
-     * @param fecharVenda
-     */
-    private FecharVenda fecharVenda;
-    
-    public EscolherCliente(FecharVenda fecharVenda) {
-        this.fecharVenda = fecharVenda;
-    }
+public class EscolherCliente extends javax.swing.JInternalFrame {
 
+    /**
+     * Creates new form EscolherCliente1
+     */
     public EscolherCliente() {
         initComponents();
-        ClienteDAO dao = new ClienteDAO();
-        List<Cliente> lista = dao.buscarClienteTodo();
-        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
-        modelo.setNumRows(0);
-        for (Cliente c : lista) {
-            modelo.addRow(new Object[]{
-                c.getNome(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getRg(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCnh()
-            });
-        }
     }
 
     /**
@@ -55,14 +33,19 @@ public class EscolherCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         txtBuscarClientes = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jButton1.setText("Escolher cliente");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Buscar Clientes:");
 
@@ -94,13 +77,6 @@ public class EscolherCliente extends javax.swing.JFrame {
         });
         tabela.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(tabela);
-
-        jButton1.setText("Escolher cliente");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,6 +110,17 @@ public class EscolherCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int linha = tabela.getSelectedRow();
+        String cpf = tabela.getValueAt(linha, 3).toString();
+        Cliente c = new Cliente();
+        c.setCpf(cpf);
+
+        JOptionPane.showMessageDialog(null, "Cliente cpf: "+c.getCpf());
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         String nome = txtBuscarClientes.getText();
@@ -157,51 +144,6 @@ public class EscolherCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int linha = tabela.getSelectedRow();
-        String cpf = tabela.getValueAt(linha, 3).toString();
-        Cliente c = new Cliente();
-        c.setCpf(cpf);
-        
-        JOptionPane.showMessageDialog(null, "Cliente cpf: "+c.getCpf());
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EscolherCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EscolherCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EscolherCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EscolherCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EscolherCliente().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
