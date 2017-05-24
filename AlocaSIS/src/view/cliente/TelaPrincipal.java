@@ -70,6 +70,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Clientes");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Fila-50.png"))); // NOI18N
         jMenuItem1.setText("Cadastrar cliente");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +79,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Procurar Usuário Masculino-50.png"))); // NOI18N
         jMenuItem3.setText("Buscar cliente");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +88,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Alterar Usuário.png"))); // NOI18N
         jMenuItem4.setText("Alterar cliente");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
