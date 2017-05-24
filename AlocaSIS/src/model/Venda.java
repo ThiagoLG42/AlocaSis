@@ -11,10 +11,29 @@ package model;
  */
 public class Venda {
     private String formaPagamento;
-    private String servicosAdicionais;
     private double desconto;
     private double valorTotal;
-    private int chassi;
+    private String chassi;
+    private String cpf;
+
+    public Venda(String formaPagamento, double desconto, double valorTotal, String chassi, String cpf) {
+        this.formaPagamento = formaPagamento;
+        this.desconto = desconto;
+        this.valorTotal = valorTotal;
+        this.chassi = chassi;
+        this.cpf = cpf;
+    }
+
+    public Venda() {
+    }
+    
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public String getFormaPagamento() {
         return formaPagamento;
@@ -22,14 +41,6 @@ public class Venda {
 
     public void setFormaPagamento(String formaPagamento) {
         this.formaPagamento = formaPagamento;
-    }
-
-    public String getServicosAdicionais() {
-        return servicosAdicionais;
-    }
-
-    public void setServicosAdicionais(String servicosAdicionais) {
-        this.servicosAdicionais = servicosAdicionais;
     }
 
     public double getDesconto() {
@@ -48,11 +59,11 @@ public class Venda {
         this.valorTotal = valorTotal;
     }
 
-    public int getChassi() {
+    public String getChassi() {
         return chassi;
     }
 
-    public void setChassi(int chassi) {
+    public void setChassi(String chassi) {
         this.chassi = chassi;
     }
     
