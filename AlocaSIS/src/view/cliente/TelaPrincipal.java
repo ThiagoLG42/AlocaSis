@@ -1,8 +1,5 @@
 package view.cliente;
 
-
-
-import view.funcionario.CadastrarFuncionario;
 import view.veiculo.AlterarVeiculos;
 import view.veiculo.BuscarVeiculos;
 import view.veiculo.CadastrarVeiculos;
@@ -216,15 +213,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        CadastrarFuncionario tela = new CadastrarFuncionario();
+        /*CadastrarFuncionario tela = new CadastrarFuncionario();
         telaPrincipal.add(tela);
-        tela.setVisible(true);
+        tela.setVisible(true);*/
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
         FecharVenda tela = new FecharVenda();
-        telaPrincipal.add(tela);
         tela.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 

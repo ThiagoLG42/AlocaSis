@@ -162,7 +162,6 @@ public class TelaPrincipalFuncionario extends javax.swing.JFrame {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
         FecharVenda tela = new FecharVenda();
-        telaPrincipal.add(tela);
         tela.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
