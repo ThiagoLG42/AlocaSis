@@ -21,6 +21,24 @@ public class BuscarClientes extends javax.swing.JInternalFrame {
      */
     public BuscarClientes() {
         initComponents();
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> lista = dao.buscarClienteTodo();
+        int i = 0;
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        for (Cliente c : lista) {
+            modelo.addRow(new Object[]{
+                c.getCpf(),
+                c.getNome(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getRg(),
+                c.getCidade(),
+                c.getEstado(),
+                c.getCnh()
+
+            });
+        }
     }
 
     /**

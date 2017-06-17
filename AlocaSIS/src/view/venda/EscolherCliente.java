@@ -29,8 +29,8 @@ public class EscolherCliente extends javax.swing.JFrame {
         modelo.setNumRows(0);
         for (Cliente c : lista) {
             modelo.addRow(new Object[]{
-                c.getNome(),
                 c.getCpf(),
+                c.getNome(),
                 c.getEmail(),
                 c.getTelefone(),
                 c.getRg(),
@@ -64,7 +64,7 @@ public class EscolherCliente extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "E-mail", "CPF", "Telefone", "RG", "Cidade", "Estado", "CNH"
+                "CPF", "Nome", "Email", "Telefone", "RG", "Cidade", "Estado", "CNH"
             }
         ) {
             boolean[] canEdit = new boolean [] {

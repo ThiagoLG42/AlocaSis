@@ -17,7 +17,7 @@ import model.Venda;
 public class VendaDAO {
     public boolean cadastrarVenda(Venda v) {
         Connection con = ConnectionFactory.getConnection();
-        String sql = "INSERT INTO venda (formaPagamento, desconto, valorTotal,cpf,chassi)VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO venda (formaPagamento, desconto, valorTotal,cpf,chassi) VALUES (?,?,?,?,?)";
         PreparedStatement stmt = null;
         try{
             stmt = (PreparedStatement) con.prepareStatement(sql);
