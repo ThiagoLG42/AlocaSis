@@ -5,11 +5,9 @@
  */
 package view.veiculo;
 
-import DAO.ClienteDAO;
 import DAO.VeiculoDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import model.Cliente;
 import model.Veiculo;
 
 /**
@@ -24,6 +22,21 @@ public class BuscarVeiculos extends javax.swing.JInternalFrame {
      */
     public BuscarVeiculos() {
         initComponents();
+        VeiculoDAO dao = new VeiculoDAO();
+        List<Veiculo> lista = dao.buscarVeiculoTodo();
+        int i = 0;
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        for (Veiculo v : lista) {
+            modelo.addRow(new Object[]{
+                v.getChassi(),
+                v.getModelo(),
+                v.getFabricante(),
+                v.getCor(),
+                v.getAno(),
+                v.getPreco(),
+            });
+        }
     }
 
     /**
@@ -63,7 +76,7 @@ public class BuscarVeiculos extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Modelo", "Fabricante", "Cor", "Ano", "Preço", "Chassi"
+                "Chassi", "Modelo", "Fabricante", "Cor", "Ano", "Preço"
             }
         ) {
             boolean[] canEdit = new boolean [] {
